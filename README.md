@@ -136,11 +136,12 @@ test.rbfファイルをタイムラインに張り付けると
 ![構成図](https://github.com/NewGoldSmith/AviUtl2_Input_Plugin/blob/main/images/09paste.png?raw=true)  
 の様に表示されます。  
 #### **注意**  
-ファイルビューの**test.rbf**をダブルクリックしても関連付けられてないので、何も起動しません。**必ず**ドラッグアンドドロップまたは、同等の操作をして下さい。    
+ファイルビューの**test.rbf**をダブルクリックしても関連付けられてないので、何も起動しません。**必ず**ドラッグアンドドロップまたは、同等の操作をして下さい。  
+
 さて、タイムラインカーソル（赤の縦線を勝手に命名）を動かすと画像が変わっていきますでしょうか？  
 ![構成図](https://github.com/NewGoldSmith/AviUtl2_Input_Plugin/blob/main/images/10TimeLineCursor.png?raw=true)  
 
-ここで更に、エクスプローラービューでtesut.rbfをコピーして貼り付け、「**test - コピー.rbf**」ファイルを作って、これも張り付けてみましょう。  
+ここで更に、エクスプローラービューでtest.rbfをコピーして貼り付け、「**test - コピー.rbf**」ファイルを作って、これも張り付けてみましょう。  
 ![構成図](https://github.com/NewGoldSmith/AviUtl2_Input_Plugin/blob/main/images/10-2.png?raw=true)  
 このような感じになりましたでしょうか。なれば**デモプログラムの構築と実行**は成功です。
 
@@ -206,8 +207,6 @@ AviUtl2のメニュー＞設定＞入力プラグインの設定を選ぶ
 ### SDKディレクトリについて
 プロジェクトとしては作成してないが、.\aviutl2_sdk\というディレクトリを作成し、そこに解凍したSDKファイルを配置した。AviUtl2の定義はここから参照するようにした。
 ## オフィシャルSDKの仕様の解釈と実装
-SDKを解釈し、実装を行った。
-
 ### INPUT_HANDLE
 　デコーダーのインスタンスを保持するポインタ型。
 
