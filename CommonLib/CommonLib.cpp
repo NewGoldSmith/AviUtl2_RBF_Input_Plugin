@@ -655,9 +655,9 @@ HBITMAP CommonLib::DDBToDIB(HDC hdc, HBITMAP hDDB){
     if (!hdc || !hDDB)
         return NULL;
 
-    // 1. ヘッダー取得
-    BITMAPINFOHEADER bmih = {};
-    bmih.biSize = sizeof(BITMAPINFOHEADER);
+    BITMAPINFOHEADER bmih = { sizeof(BITMAPINFOHEADER) };
+
+    // ヘッダー取得
     if(!GetDIBits(
        hdc
        , hDDB
@@ -669,16 +669,15 @@ HBITMAP CommonLib::DDBToDIB(HDC hdc, HBITMAP hDDB){
        return NULL;
     }
 
-    // 2. パレットサイズ（8bpp以下）
-    int cbPalette = (bmih.biBitCount <= 8)
-       ? (1i64 << bmih.biBitCount) * sizeof(RGBQUAD)
-       : 0;
+    // パレットサイズ算出（8bpp以下）
+    DWORD usedColors = bmih.biClrUsed;
+    if(usedColors == 0 && bmih.biBitCount <= 8){
+       usedColors = 1 << bmih.biBitCount; // 最大色数
+    }
+    size_t paletteSize = usedColors * sizeof(RGBQUAD);
 
-   // 3. ピクセルサイズ
-    DWORD cbImage = GDI_DIBSIZE(bmih);
-
-    // 4. 一括メモリ確保（BITMAPINFO + パレット + ピクセル）
-    size_t cbTotal = sizeof(BITMAPINFOHEADER) + cbPalette + cbImage;
+    // メモリ確保（BITMAPINFO + パレット）
+    size_t cbTotal = sizeof(BITMAPINFOHEADER) + paletteSize;
     unique_ptr<BYTE, void(*)(BYTE*)> pBuffer
     { new(nothrow) BYTE[cbTotal] ,[](BYTE* pb) { delete[] pb; } };
     if(!pBuffer){
@@ -686,26 +685,26 @@ HBITMAP CommonLib::DDBToDIB(HDC hdc, HBITMAP hDDB){
        return NULL;
     }
 
-    // 5. ポインタ分割
+    // BITMAPINFOにキャスト
     BITMAPINFO* pbmi = (BITMAPINFO*)pBuffer.get();
     pbmi->bmiHeader = bmih;
-    BYTE* pBits = pBuffer.get() + sizeof(BITMAPINFOHEADER) + cbPalette;
 
-    // 6. ピクセル取得
-    const int nHeight = std::abs(bmih.biHeight);
-    if(!GetDIBits(
-       hdc
-       , hDDB
-       , 0
-       , nHeight
-       , pBits
-       , pbmi
-       , DIB_RGB_COLORS)){
-       DPLE;
-       return NULL;
+    // パレット値取得
+    if(bmih.biBitCount <= 8){
+       if(!GetDIBits(
+          hdc,
+          hDDB,
+          0,
+          0,
+          NULL,
+          pbmi,
+          DIB_RGB_COLORS)){
+          DPLE;
+          return NULL;
+       }
     }
 
-    // 7. 新しい DIB を作成
+    // 新しい DIB を作成
     void* pNewBits = NULL;
     HBITMAP hDIB;
     if(hDIB =
@@ -721,10 +720,20 @@ HBITMAP CommonLib::DDBToDIB(HDC hdc, HBITMAP hDDB){
        return NULL;
     }
 
-   // 8. ピクセルコピー
-    memcpy_s(pNewBits, cbImage, pBits, cbImage);
+    // ピクセル取得
+    const int nHeight = abs(bmih.biHeight);
+    if(!GetDIBits(
+       hdc
+       , hDDB
+       , 0
+       , nHeight
+       , pNewBits
+       , pbmi
+       , DIB_RGB_COLORS)){
+       DPLE;
+       return NULL;
+    }
 
-    // 9. 完了
     return hDIB;
 }
 
