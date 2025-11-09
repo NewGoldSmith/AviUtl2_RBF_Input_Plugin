@@ -73,7 +73,7 @@ namespace bit_manip
 
       // m256同士の比較演算子
       friend inline bool operator==(const m256& a,const m256& b) noexcept{
-         return _mm256_testz_si256(_mm256_xor_si256(a.m256i,b.m256i),_mm256_xor_si256(a.m256i,b.m256i));
+         return a.m256i == b.m256i;
       }
 
       // キャスト演算子
