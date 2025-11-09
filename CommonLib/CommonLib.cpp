@@ -729,58 +729,90 @@ HBITMAP CommonLib::DDBToDIB(HDC hdc, HBITMAP hDDB){
 }
 
 HBITMAP CommonLib::DupDIB(HBITMAP hSrcDIB){
-    if (!hSrcDIB) return NULL;
+   if(!hSrcDIB) return NULL;
 
-    unique_ptr<remove_pointer_t< HDC>, void(*)(HDC hdc)> hDC
-    { GetDC(NULL),[](HDC hdc){ReleaseDC(NULL,hdc); } };
+   unique_ptr<remove_pointer_t< HDC>, void(*)(HDC hdc)> hDC
+   { GetDC(NULL),[](HDC hdc){ReleaseDC(NULL,hdc); } };
 
-    // 1. ヘッダー取得
-    BITMAPINFOHEADER bih = { sizeof(BITMAPINFOHEADER) };
-    if(!GetDIBits(
-       hDC.get()
-       , hSrcDIB
-       , 0
-       , 0
-       , NULL
-       , (BITMAPINFO*)&bih
-       , DIB_RGB_COLORS)){
-       return NULL;
-    }
+   if(!hDC){
+      DPT("Alloc Error.");
+      return NULL;
+   }
 
-    // 2. パレットサイズ（8bpp以下）
-    int paletteSize = (bih.biBitCount <= 8) ? (1i64 << bih.biBitCount) * sizeof(RGBQUAD) : 0;
+   // ヘッダー取得
+   BITMAPINFOHEADER bih = { sizeof(BITMAPINFOHEADER) };
+   if(!::GetDIBits(
+      hDC.get()
+      , hSrcDIB
+      , 0
+      , 0
+      , NULL
+      , (BITMAPINFO*)&bih
+      , DIB_RGB_COLORS)){
+      DPLE;
+      return NULL;
+   }
 
-    // 3. ピクセルサイズ
-    DWORD imageSize = GDI_DIBSIZE(bih);
+   // パレットサイズ取得（8bpp以下）
+   int paletteSize{};
+   if(bih.biBitCount <= 8){
+      DWORD usedColors = bih.biClrUsed;
+      if(usedColors == 0){
+         usedColors = 1 << bih.biBitCount; // 最大色数
+      }
+      paletteSize = usedColors * sizeof(RGBQUAD);
+   }
 
-    // 4. 一括メモリ確保
-    size_t totalSize = sizeof(BITMAPINFOHEADER) + paletteSize + imageSize;
-    unique_ptr< BYTE, void(*)(BYTE* pb)> buffer
-    { new(nothrow) BYTE[totalSize],[](BYTE* pb){delete[]pb; } };
-    if(!buffer) return NULL;
+   size_t infoSize = sizeof(BITMAPINFOHEADER) + paletteSize;
+   auto pbmi = unique_ptr<BITMAPINFO>((BITMAPINFO*)new(std::nothrow) BYTE[infoSize]);
+   if(!pbmi){
+      DPT("Alloc Error.");
+      return NULL;
+   }
 
-    // 5. ポインタ分割
-    BITMAPINFO* pbmi = (BITMAPINFO*)buffer.get();
-    pbmi->bmiHeader = bih;
-    BYTE* pBits = buffer.get() + sizeof(BITMAPINFOHEADER) + paletteSize;
+   pbmi->bmiHeader = bih;
 
-    // 6. ピクセル取得
-    if (!GetDIBits(hDC.get(), hSrcDIB, 0, bih.biHeight, pBits, pbmi, DIB_RGB_COLORS)){
-        return NULL;
-    }
+   // パレット取得
+   if(!::GetDIBits(
+      hDC.get()
+      , hSrcDIB
+      , 0
+      , bih.biHeight
+      , NULL
+      , pbmi.get()
+      , DIB_RGB_COLORS)){
+      DPLE;
+      return NULL;
+   }
 
-    // 7. 新しい DIB を作成
-    void* pNewBits{};
-    HBITMAP hNewBitmap = CreateDIBSection(hDC.get(), pbmi, DIB_RGB_COLORS, &pNewBits, nullptr, 0);
-    if (!hNewBitmap || !pNewBits) {
-       return NULL;
-    }
-
-    // 8. ピクセルコピー
-    memcpy_s(pNewBits, imageSize, pBits, imageSize);
-
-    // 9. 後始末
-    return hNewBitmap;
+   // デュプリケートDIB作成
+   void* pNewBits{};
+   HBITMAP hNewBitmap =
+      ::CreateDIBSection(
+         hDC.get()
+         , pbmi.get()
+         , DIB_RGB_COLORS
+         , &pNewBits
+         , NULL
+         , 0);
+   if(!hNewBitmap || !pNewBits){
+      DPLE;
+      return NULL;
+   }
+   
+   // ビットマップコピー
+   if(!::GetDIBits(
+      hDC.get()
+      , hSrcDIB
+      , 0
+      , pbmi->bmiHeader.biHeight
+      , pNewBits
+      , pbmi.get()
+      , DIB_RGB_COLORS)){
+      DPLE;
+      return NULL;
+   }
+   return hNewBitmap;
 }
 
 HBITMAP CommonLib::CreateDIB24(int Width, int Height){

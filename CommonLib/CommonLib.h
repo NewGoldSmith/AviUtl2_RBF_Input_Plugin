@@ -1,13 +1,13 @@
-/**
+ï»¿/**
  * @file CommonLib.h
- * @brief CommonLib‚ÌéŒ¾
+ * @brief CommonLibã®å®£è¨€
  * @author Gold Smith
  * @date 2025
  * SPDX-License-Identifier: MIT
  * Released under the MIT license
  * https: //opensource.org/licenses/mit-license.php
  *
- * ‚±‚Ìƒtƒ@ƒCƒ‹“à‚Ì‚·‚×‚Ä‚ÌƒR[ƒh‚ÍA“Á‚É–¾‹L‚³‚ê‚Ä‚¢‚È‚¢ŒÀ‚èAMITƒ‰ƒCƒZƒ“ƒX‚É]‚¢‚Ü‚·B
+ * ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«å†…ã®ã™ã¹ã¦ã®ã‚³ãƒ¼ãƒ‰ã¯ã€ç‰¹ã«æ˜è¨˜ã•ã‚Œã¦ã„ãªã„é™ã‚Šã€MITãƒ©ã‚¤ã‚»ãƒ³ã‚¹ã«å¾“ã„ã¾ã™ã€‚
  */
 #pragma once
 #define NOMINMAX
@@ -25,9 +25,9 @@ namespace CommonLib{
    std::string U8toA(const std::u8string& str);
    std::u8string AtoU8(const std::string& str);
    std::map<std::wstring, std::wstring> U8toW(const std::map<std::u8string, std::u8string>& Inmap);
-   /// @brief base64‚ÅƒGƒ“ƒR[ƒh‚³‚ê‚½•¶š—ñ‚ğƒfƒR[ƒh‚·‚éB
-   /// @param strB64 base64‚ÅƒGƒ“ƒR[ƒh‚³‚ê‚½•¶š—ñB
-   /// @return ƒfƒR[ƒh‚³‚ê‚½ƒoƒCƒiƒŠ‚àŠÜ‚Şƒf[ƒ^B
+   /// @brief base64ã§ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã•ã‚ŒãŸæ–‡å­—åˆ—ã‚’ãƒ‡ã‚³ãƒ¼ãƒ‰ã™ã‚‹ã€‚
+   /// @param strB64 base64ã§ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã•ã‚ŒãŸæ–‡å­—åˆ—ã€‚
+   /// @return ãƒ‡ã‚³ãƒ¼ãƒ‰ã•ã‚ŒãŸãƒã‚¤ãƒŠãƒªã‚‚å«ã‚€ãƒ‡ãƒ¼ã‚¿ã€‚
    std::vector<BYTE> B64AtoBin(const std::string& strB64);
    std::vector<BYTE> B64U8toBin(const std::u8string& strB64);
    std::vector<BYTE> B64WtoBin(const std::wstring& strB64);
@@ -39,39 +39,39 @@ namespace CommonLib{
    std::string BinToA(const std::vector<BYTE>& bin);
    std::vector<BYTE> AtoBin(const std::string& str);
 
-   /// @brief ƒoƒCƒiƒŠ‚àŠÜ‚Şƒf[ƒ^‚ğbase64‚ÉƒGƒ“ƒR[ƒh‚·‚éB
-   /// @param pbin ƒoƒCƒgƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-   /// @param size ƒoƒCƒgƒf[ƒ^‚Ì”B
-   /// @return ƒGƒ“ƒR[ƒh‚³‚ê‚½•¶š—ñB
+   /// @brief ãƒã‚¤ãƒŠãƒªã‚‚å«ã‚€ãƒ‡ãƒ¼ã‚¿ã‚’base64ã«ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã™ã‚‹ã€‚
+   /// @param pbin ãƒã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+   /// @param size ãƒã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿ã®æ•°ã€‚
+   /// @return ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã•ã‚ŒãŸæ–‡å­—åˆ—ã€‚
    std::string BinToB64A(const std::vector<BYTE>& bin);
    std::wstring BinToB64W(const std::vector<BYTE>& bin);
 
-   /// @brief ƒCƒ“ƒXƒ^ƒ“ƒXƒnƒ“ƒhƒ‹‚©‚ç‚»‚ÌƒCƒ“ƒXƒ^ƒ“ƒXŒ³‚Ìƒ‚ƒWƒ…[ƒ‹
-   /// ƒpƒX‚ğæ“¾‚µAŠg’£q‚ğINI‚É•Ï‚¦‚½ƒpƒXƒl[ƒ€‚ğ•Ô‚·B
-   /// @param hInst ƒ‚ƒWƒ…[ƒ‹ƒnƒ“ƒhƒ‹B
-   /// @return ƒ‚ƒWƒ…[ƒ‹ƒnƒ“ƒhƒ‹‚Ìƒtƒ‹ƒpƒX•¶š—ñ‚ÉŠg’£q‚ğINI‚É
-   /// •Ï‚¦‚½•¶š—ñ‚ğ•Ô‚·B
+   /// @brief ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒãƒ³ãƒ‰ãƒ«ã‹ã‚‰ãã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹å…ƒã®ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
+   /// ãƒ‘ã‚¹ã‚’å–å¾—ã—ã€æ‹¡å¼µå­ã‚’INIã«å¤‰ãˆãŸãƒ‘ã‚¹ãƒãƒ¼ãƒ ã‚’è¿”ã™ã€‚
+   /// @param hInst ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã€‚
+   /// @return ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã®ãƒ•ãƒ«ãƒ‘ã‚¹æ–‡å­—åˆ—ã«æ‹¡å¼µå­ã‚’INIã«
+   /// å¤‰ãˆãŸæ–‡å­—åˆ—ã‚’è¿”ã™ã€‚
    std::wstring MakeIniPathNameW(HINSTANCE hInst);
-   /// @brief ƒCƒ“ƒXƒ^ƒ“ƒXƒnƒ“ƒhƒ‹‚©‚ç‚»‚ÌƒCƒ“ƒXƒ^ƒ“ƒXŒ³‚Ìƒ‚ƒWƒ…[ƒ‹
-   /// ƒpƒX‚ğæ“¾‚µAŠg’£q‚ğINI‚É•Ï‚¦‚½ƒpƒXƒl[ƒ€‚ğ•Ô‚·B
-   /// @param hInst ƒ‚ƒWƒ…[ƒ‹ƒnƒ“ƒhƒ‹B
-   /// @return ƒ‚ƒWƒ…[ƒ‹ƒnƒ“ƒhƒ‹‚Ìƒtƒ‹ƒpƒX•¶š—ñ‚ÉŠg’£q‚ğINI‚É
-   /// •Ï‚¦‚½•¶š—ñ‚ğ•Ô‚·B
+   /// @brief ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒãƒ³ãƒ‰ãƒ«ã‹ã‚‰ãã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹å…ƒã®ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
+   /// ãƒ‘ã‚¹ã‚’å–å¾—ã—ã€æ‹¡å¼µå­ã‚’INIã«å¤‰ãˆãŸãƒ‘ã‚¹ãƒãƒ¼ãƒ ã‚’è¿”ã™ã€‚
+   /// @param hInst ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã€‚
+   /// @return ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã®ãƒ•ãƒ«ãƒ‘ã‚¹æ–‡å­—åˆ—ã«æ‹¡å¼µå­ã‚’INIã«
+   /// å¤‰ãˆãŸæ–‡å­—åˆ—ã‚’è¿”ã™ã€‚
    std::u8string MakeIniPathNameU8(HINSTANCE hInst);
 
-   /// @brief target‚Ì‘¶İ‚µ‚Ä‚¢‚éƒL[‚Ì’l‚ğsource‚Ì’l‚ÅXV‚·‚éB
-   /// @param target XV‚·‚é‘ÎÛ‚Ìmap
-   /// @param source XVŒ³ƒf[ƒ^‚Ìmap
+   /// @brief targetã®å­˜åœ¨ã—ã¦ã„ã‚‹ã‚­ãƒ¼ã®å€¤ã‚’sourceã®å€¤ã§æ›´æ–°ã™ã‚‹ã€‚
+   /// @param target æ›´æ–°ã™ã‚‹å¯¾è±¡ã®map
+   /// @param source æ›´æ–°å…ƒãƒ‡ãƒ¼ã‚¿ã®map
    void UpdateExistingKeysU8(
       std::map<std::string, std::string>& target
       , const std::map<std::string, std::string>& source);
    void UpdateExistingKeysW(
       std::map<std::wstring, std::wstring>& target
       , const std::map<std::wstring, std::wstring>& source);
-   /// @brief target‚É–³‚¢ƒL[‚Ì‚İAsource‚©‚çƒL[‚Ævalue‚ğƒRƒs[‚·‚éB
-   /// @param target Insert‘ÎÛ‚ÌmapB
-   /// @param source ”äŠr‘ÎÛ‚ÌmapB
-   /// @return Insert‚ª‚ ‚Á‚½‚çTRUEA‚»‚êˆÈŠOFALSEB
+   /// @brief targetã«ç„¡ã„ã‚­ãƒ¼ã®ã¿ã€sourceã‹ã‚‰ã‚­ãƒ¼ã¨valueã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹ã€‚
+   /// @param target Insertå¯¾è±¡ã®mapã€‚
+   /// @param source æ¯”è¼ƒå¯¾è±¡ã®mapã€‚
+   /// @return InsertãŒã‚ã£ãŸã‚‰TRUEã€ãã‚Œä»¥å¤–FALSEã€‚
    BOOL InsertOnlyNewKeysU8(
       std::map<std::string, std::string>& target,
       const std::map<std::string, std::string>& source);
@@ -79,82 +79,82 @@ namespace CommonLib{
       std::map<std::wstring, std::wstring>& target,
       const std::map<std::wstring, std::wstring>& source);
 
-   /// @brief DDB,DIB‚ğƒtƒ@ƒCƒ‹‚É•Û‘¶‚·‚éB
-   /// @param hdc ƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒgƒnƒ“ƒhƒ‹
-   /// @param hBitmap ƒrƒbƒgƒ}ƒbƒvƒnƒ“ƒhƒ‹B
-   /// @param filename ƒtƒ@ƒCƒ‹ƒpƒXƒlƒCƒ€B
-   /// @return ¬Œ÷‚È‚çTRUEB‚»‚êˆÈŠOFALSEB
+   /// @brief DDB,DIBã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«ä¿å­˜ã™ã‚‹ã€‚
+   /// @param hdc ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãƒãƒ³ãƒ‰ãƒ«
+   /// @param hBitmap ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒãƒ³ãƒ‰ãƒ«ã€‚
+   /// @param filename ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ãƒã‚¤ãƒ ã€‚
+   /// @return æˆåŠŸãªã‚‰TRUEã€‚ãã‚Œä»¥å¤–FALSEã€‚
    BOOL SaveBitmapToFileW(HDC hdc, HBITMAP hBitmap, const std::wstring& filename);
-   /// @brief w’è‚³‚ê‚½ƒZƒNƒVƒ‡ƒ“‚ÌƒL[‚ÆƒoƒŠƒ…[‚ÌƒyƒA‚ğæ“¾‚·‚é
-   /// @param section ƒZƒNƒVƒ‡ƒ“–¼
-   /// @param filename INIƒtƒ@ƒCƒ‹‚ÌƒpƒXƒlƒCƒ€B
-   /// @return æ“¾‚µ‚½ƒL[‚ÆƒoƒŠƒ…[‚ÌmapB
+   /// @brief æŒ‡å®šã•ã‚ŒãŸã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ã‚­ãƒ¼ã¨ãƒãƒªãƒ¥ãƒ¼ã®ãƒšã‚¢ã‚’å–å¾—ã™ã‚‹
+   /// @param section ã‚»ã‚¯ã‚·ãƒ§ãƒ³å
+   /// @param filename INIãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹ãƒã‚¤ãƒ ã€‚
+   /// @return å–å¾—ã—ãŸã‚­ãƒ¼ã¨ãƒãƒªãƒ¥ãƒ¼ã®mapã€‚
    std::map<std::wstring, std::wstring>
       ReadIniToMapW(const std::wstring& section, const std::wstring& filename);
-      /// @brief INIƒtƒ@ƒCƒ‹‚ÌƒZƒNƒVƒ‡ƒ“‚©‚çİ’è‚ğmap‚É“Ç‚İ‚Ş
-      /// @param section ƒZƒNƒVƒ‡ƒ“–¼
-      /// @param filename INIƒtƒ@ƒCƒ‹ƒpƒX
-      /// @return “Ç‚İ‚Ü‚ê‚½map
+      /// @brief INIãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã‹ã‚‰è¨­å®šã‚’mapã«èª­ã¿è¾¼ã‚€
+      /// @param section ã‚»ã‚¯ã‚·ãƒ§ãƒ³å
+      /// @param filename INIãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
+      /// @return èª­ã¿è¾¼ã¾ã‚ŒãŸmap
    std::map<std::u8string, std::u8string>
       ReadIniToMapU8(const std::u8string& section, const std::u8string& filename);
-         /// @brief INIƒtƒ@ƒCƒ‹‚ÌƒZƒNƒVƒ‡ƒ“‚Émap‚Ìİ’è‚ğ‘‚«‚Ş  
-         /// @param section ƒZƒNƒVƒ‡ƒ“–¼
-         /// @param settings ƒZƒbƒeƒBƒ“ƒOmap
-         /// @param iniPath INIƒpƒX
-         /// @return ¬Œ÷‚·‚ê‚ÎTRUEA‚»‚êˆÈŠOFALSE
+         /// @brief INIãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã«mapã®è¨­å®šã‚’æ›¸ãè¾¼ã‚€  
+         /// @param section ã‚»ã‚¯ã‚·ãƒ§ãƒ³å
+         /// @param settings ã‚»ãƒƒãƒ†ã‚£ãƒ³ã‚°map
+         /// @param iniPath INIãƒ‘ã‚¹
+         /// @return æˆåŠŸã™ã‚Œã°TRUEã€ãã‚Œä»¥å¤–FALSE
    BOOL WriteMapToIniW(
       const std::wstring& section
       , const std::map<std::wstring, std::wstring>& settings
       , const std::wstring& iniPath);
-   /// @brief INIƒtƒ@ƒCƒ‹‚ÌƒZƒNƒVƒ‡ƒ“‚Émap‚Ìİ’è‚ğ‘‚«‚Ş  
-   /// @param section ƒZƒNƒVƒ‡ƒ“–¼
-   /// @param settings ƒZƒbƒeƒBƒ“ƒOmap
-   /// @param iniPath INIƒpƒX
-   /// @return ¬Œ÷‚·‚ê‚ÎTRUEA‚»‚êˆÈŠOFALSE
+   /// @brief INIãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã«mapã®è¨­å®šã‚’æ›¸ãè¾¼ã‚€  
+   /// @param section ã‚»ã‚¯ã‚·ãƒ§ãƒ³å
+   /// @param settings ã‚»ãƒƒãƒ†ã‚£ãƒ³ã‚°map
+   /// @param iniPath INIãƒ‘ã‚¹
+   /// @return æˆåŠŸã™ã‚Œã°TRUEã€ãã‚Œä»¥å¤–FALSE
    BOOL WriteMapToIniU8(
       const std::u8string& section
       , const std::map<std::u8string, std::u8string>& settings
       , const std::u8string& iniPath);
-   /// @brief INIƒZƒNƒVƒ‡ƒ“‚ª‘¶İ‚·‚é‚©’²‚×‚éB
-   /// @param section ƒZƒNƒVƒ‡ƒ“–¼
-   /// @param path INIƒtƒ@ƒCƒ‹ƒpƒX
-   /// @return ƒZƒNƒVƒ‡ƒ“‚ª‘¶İ‚µ‚Ä‚¢‚ê‚ÎTRUEA
-   /// ƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚Ä‚¢‚È‚¢ê‡FALSEA
-   /// ‚»‚êˆÈŠOFALSEB
+   /// @brief INIã‚»ã‚¯ã‚·ãƒ§ãƒ³ãŒå­˜åœ¨ã™ã‚‹ã‹èª¿ã¹ã‚‹ã€‚
+   /// @param section ã‚»ã‚¯ã‚·ãƒ§ãƒ³å
+   /// @param path INIãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
+   /// @return ã‚»ã‚¯ã‚·ãƒ§ãƒ³ãŒå­˜åœ¨ã—ã¦ã„ã‚Œã°TRUEã€
+   /// ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ã¦ã„ãªã„å ´åˆFALSEã€
+   /// ãã‚Œä»¥å¤–FALSEã€‚
    BOOL IniSectionExistsW(const std::wstring& section, const std::wstring& path);
-   /// @brief INIƒZƒNƒVƒ‡ƒ“‚ª‘¶İ‚·‚é‚©’²‚×‚éB
-   /// @param section ƒZƒNƒVƒ‡ƒ“–¼
-   /// @param path INIƒtƒ@ƒCƒ‹ƒpƒX
-   /// @return ƒZƒNƒVƒ‡ƒ“‚ª‘¶İ‚µ‚Ä‚¢‚ê‚ÎTRUEA
-   /// ƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚Ä‚¢‚È‚¢ê‡FALSEA
-   /// ‚»‚êˆÈŠOFALSEB
+   /// @brief INIã‚»ã‚¯ã‚·ãƒ§ãƒ³ãŒå­˜åœ¨ã™ã‚‹ã‹èª¿ã¹ã‚‹ã€‚
+   /// @param section ã‚»ã‚¯ã‚·ãƒ§ãƒ³å
+   /// @param path INIãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
+   /// @return ã‚»ã‚¯ã‚·ãƒ§ãƒ³ãŒå­˜åœ¨ã—ã¦ã„ã‚Œã°TRUEã€
+   /// ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ã¦ã„ãªã„å ´åˆFALSEã€
+   /// ãã‚Œä»¥å¤–FALSEã€‚
    BOOL IniSectionExistsU8(const std::u8string& section, const std::u8string& path);
-   /// @brief ƒ}ƒbƒv‚ğƒ}[ƒW‚·‚éBŒ³‚Ìƒ}ƒbƒv‚Í•ÏX‚µ‚È‚¢B
-   /// @param a ƒ}ƒbƒvaB
-   /// @param b ƒ}ƒbƒvbB
-   /// @return ƒ}[ƒW‚³‚ê‚½ƒ}ƒbƒvB
+   /// @brief ãƒãƒƒãƒ—ã‚’ãƒãƒ¼ã‚¸ã™ã‚‹ã€‚å…ƒã®ãƒãƒƒãƒ—ã¯å¤‰æ›´ã—ãªã„ã€‚
+   /// @param a ãƒãƒƒãƒ—aã€‚
+   /// @param b ãƒãƒƒãƒ—bã€‚
+   /// @return ãƒãƒ¼ã‚¸ã•ã‚ŒãŸãƒãƒƒãƒ—ã€‚
    std::map<std::string, std::string>
       MergeMapU8(
          const std::map<std::string, std::string>& a
          , const std::map < std::string, std::string >& b);
-      /// @brief tempƒfƒBƒŒƒNƒgƒŠ‚Éì¬‚·‚éƒeƒ“ƒvƒtƒ@ƒCƒ‹ƒpƒXƒXƒgƒŠƒ“ƒO‚ğì¬‚·‚éB
-      /// @param InFileName ƒeƒ“ƒvƒtƒ@ƒCƒ‹‚É’Ç‰Á‚·‚éƒtƒ@ƒCƒ‹–¼B
-      /// @param OutPathName ì¬‚µ‚½ƒeƒ“ƒvƒtƒ@ƒCƒ‹‚ÌƒpƒX‚Æƒtƒ@ƒCƒ‹–¼‚ğ“ü‚ê‚éstringB
-      /// @return ì¬‚µ‚½ƒeƒ“ƒvƒtƒ@ƒCƒ‹‚Ì•¶š—ñ‚ÌƒTƒCƒYB
+      /// @brief tempãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã«ä½œæˆã™ã‚‹ãƒ†ãƒ³ãƒ—ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚¹ãƒˆãƒªãƒ³ã‚°ã‚’ä½œæˆã™ã‚‹ã€‚
+      /// @param InFileName ãƒ†ãƒ³ãƒ—ãƒ•ã‚¡ã‚¤ãƒ«ã«è¿½åŠ ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«åã€‚
+      /// @param OutPathName ä½œæˆã—ãŸãƒ†ãƒ³ãƒ—ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹ã¨ãƒ•ã‚¡ã‚¤ãƒ«åã‚’å…¥ã‚Œã‚‹stringã€‚
+      /// @return ä½œæˆã—ãŸãƒ†ãƒ³ãƒ—ãƒ•ã‚¡ã‚¤ãƒ«ã®æ–‡å­—åˆ—ã®ã‚µã‚¤ã‚ºã€‚
    std::size_t MakeTempPathNameW(
       const std::wstring& InFileName
       , std::wstring& OutPathName);
 
-   /// @brief ƒƒCƒ“ƒEƒBƒ“ƒhƒE‚ğ’T‚·B
-   /// @param threadId ƒXƒŒƒbƒhID
-   /// @return ƒEƒBƒ“ƒhƒEƒnƒ“ƒhƒ‹B
+   /// @brief ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¢ã™ã€‚
+   /// @param threadId ã‚¹ãƒ¬ãƒƒãƒ‰ID
+   /// @return ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«ã€‚
    HWND FindMainWindowFromThread(DWORD threadId);
-   /// @brief RECT‚ª‰æ–Ê“à‚Éû‚Ü‚é‚æ‚¤‚É’²®‚·‚éB
-   /// @param rc RECT\‘¢‘ÌB‚±‚Ì’l‚Í‘‚«Š·‚¦‚ç‚ê‚é‰Â”\«‚ª‚ ‚è‚Ü‚·B
-   /// @return ¬Œ÷:TRUEA‚»‚êˆÈŠO:FALSE
+   /// @brief RECTãŒç”»é¢å†…ã«åã¾ã‚‹ã‚ˆã†ã«èª¿æ•´ã™ã‚‹ã€‚
+   /// @param rc RECTæ§‹é€ ä½“ã€‚ã“ã®å€¤ã¯æ›¸ãæ›ãˆã‚‰ã‚Œã‚‹å¯èƒ½æ€§ãŒã‚ã‚Šã¾ã™ã€‚
+   /// @return æˆåŠŸ:TRUEã€ãã‚Œä»¥å¤–:FALSE
    BOOL AdjustRectToFitScreenWithOverflow(RECT& rc);
-   /// @brief GDIƒIƒuƒWƒFƒXƒg‚ğƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ÅƒZƒŒƒNƒg‚µ‚ÄAƒfƒXƒgƒ‰ƒNƒ^‚ÅƒŠƒXƒgƒA‚·‚é
-   /// @tparam T GDIƒIƒuƒWƒFƒNƒgƒnƒ“ƒhƒ‹
+   /// @brief GDIã‚ªãƒ–ã‚¸ã‚§ã‚¹ãƒˆã‚’ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã§ã‚»ãƒ¬ã‚¯ãƒˆã—ã¦ã€ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã§ãƒªã‚¹ãƒˆã‚¢ã™ã‚‹
+   /// @tparam T GDIã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒãƒ³ãƒ‰ãƒ«
    template<typename T>
    class GdiSelectAndRestorer{
       HDC hdc;
@@ -197,7 +197,7 @@ namespace CommonLib{
          EndPaint(hwnd, &ps);
       }
       HDC get() const{ return hdc; }
-      operator HDC() const{ return hdc; } // ˆÃ–Ù•ÏŠ·‚à‰Â”\
+      operator HDC() const{ return hdc; } // æš—é»™å¤‰æ›ã‚‚å¯èƒ½
    };
 
    class ScopedCOMInitializer{
@@ -211,32 +211,32 @@ namespace CommonLib{
       HRESULT result() const{ return hr; }
    };
 
-   /// @brief DDB‚©‚çDIB‚É•ÏŠ·B
-   /// @param hdc ƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg
-   /// @param hDDB DDBƒnƒ“ƒhƒ‹
-   /// @return DIBƒnƒ“ƒhƒ‹
+   /// @brief DDBã‹ã‚‰DIBã«å¤‰æ›ã€‚
+   /// @param hdc ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
+   /// @param hDDB DDBãƒãƒ³ãƒ‰ãƒ«
+   /// @return DIBãƒãƒ³ãƒ‰ãƒ«
    HBITMAP DDBToDIB(HDC hdc, HBITMAP hDDB);
-   /// @brief DIB‚Ì•¡»‚ğì¬‚·‚éB
-   /// @param hSrcDIB •¡»Œ³B
-   /// @return •¡»‚µ‚½ƒnƒ“ƒhƒ‹B
+   /// @brief DIBã®è¤‡è£½ã‚’ä½œæˆã™ã‚‹ã€‚
+   /// @param hSrcDIB è¤‡è£½å…ƒã€‚
+   /// @return è¤‡è£½ã—ãŸãƒãƒ³ãƒ‰ãƒ«ã€‚
    HBITMAP DupDIB(HBITMAP hSrcDIB);
-   /// @brief ƒsƒNƒZƒ‹‚Ì‰Šú‰»‚ª‚³‚ê‚Ä‚¢‚È‚¢DIB‚ğì¬‚·‚éB
-   /// @param Width •
-   /// @param Height ‚‚³
-   /// @return DIBƒnƒ“ƒhƒ‹
+   /// @brief ãƒ”ã‚¯ã‚»ãƒ«ã®åˆæœŸåŒ–ãŒã•ã‚Œã¦ã„ãªã„DIBã‚’ä½œæˆã™ã‚‹ã€‚
+   /// @param Width å¹…
+   /// @param Height é«˜ã•
+   /// @return DIBãƒãƒ³ãƒ‰ãƒ«
    HBITMAP CreateDIB24(int Width, int Height);
 
    HBITMAP CreateDIB24ppBits(int Width, int Height, void** ppBits);
 
 
    HBITMAP LoadPngFromResource(HINSTANCE hInst, int resID);
-   /// @brief INIƒtƒ@ƒCƒ‹’†‚ÌƒZƒNƒVƒ‡ƒ“–¼‚ğBase64‚Å
-   /// ƒfƒR[ƒh‚µ‚½•¶š—ñ‚ğAƒpƒXƒtƒ@ƒCƒ‹–¼‚Æ‚İ‚È‚µ‚Ä‚»‚Ì
-   /// ƒpƒXƒtƒ@ƒCƒ‹–¼‚Ìƒtƒ@ƒCƒ‹‚ª‘¶İ‚·‚é‚©Šm”F‚·‚éBB
-   /// ‘¶İ‚µ‚Ä‚¢‚È‚¯‚ê‚Î‚»‚ÌƒZƒNƒVƒ‡ƒ“‚ğíœB
-   /// @param ignoreList –³‹‚·‚éƒZƒNƒVƒ‡ƒ“ƒŠƒXƒgB
-   /// @param iniFilePath INIƒtƒ@ƒCƒ‹‚ÌƒpƒXƒl[ƒ€B
-   /// @return íœ‚µ‚½ƒZƒNƒVƒ‡ƒ“‚Ì”B
+   /// @brief INIãƒ•ã‚¡ã‚¤ãƒ«ä¸­ã®ã‚»ã‚¯ã‚·ãƒ§ãƒ³åã‚’Base64ã§
+   /// ãƒ‡ã‚³ãƒ¼ãƒ‰ã—ãŸæ–‡å­—åˆ—ã‚’ã€ãƒ‘ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«åã¨ã¿ãªã—ã¦ãã®
+   /// ãƒ‘ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«åã®ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã™ã‚‹ã‹ç¢ºèªã™ã‚‹ã€‚ã€‚
+   /// å­˜åœ¨ã—ã¦ã„ãªã‘ã‚Œã°ãã®ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã‚’å‰Šé™¤ã€‚
+   /// @param ignoreList ç„¡è¦–ã™ã‚‹ã‚»ã‚¯ã‚·ãƒ§ãƒ³ãƒªã‚¹ãƒˆã€‚
+   /// @param iniFilePath INIãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹ãƒãƒ¼ãƒ ã€‚
+   /// @return å‰Šé™¤ã—ãŸã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®æ•°ã€‚
    INT CleanInvalidSectionsW(const std::vector<std::wstring>& ignoreList, const std::wstring& iniFilePath);
    std::wstring FindFirstMatchingFile(const std::wstring& pattern);
 
