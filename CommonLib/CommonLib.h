@@ -200,6 +200,24 @@ namespace CommonLib{
       operator HDC() const{ return hdc; } // 暗黙変換も可能
    };
 
+   class WindowDC{
+      HWND hwnd;
+      HDC hdc;
+   public:
+      WindowDC() = delete;
+      explicit WindowDC(HWND hwndIn)
+         : hwnd(hwndIn), hdc(GetDC(hwndIn)){}
+
+      ~WindowDC(){
+         if(hdc){
+            ReleaseDC(hwnd, hdc);
+         }
+      }
+
+      HDC get() const{ return hdc; }
+      operator HDC() const{ return hdc; } // 暗黙変換も可能
+   };
+
    class ScopedCOMInitializer{
       HRESULT hr;
    public:
