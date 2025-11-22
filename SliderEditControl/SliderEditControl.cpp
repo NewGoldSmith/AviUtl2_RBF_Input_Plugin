@@ -91,7 +91,7 @@ HFONT SliderEditControl::GetFontAdjusted(HWND hWnd, const RECT* prc) const{
    int bestFit = low;
 
    TEXTMETRIC tm;
-   HDC hdc = GetDC(hWnd);
+   WindowDC hdc(hWnd);
    while(low <= high){
       int mid = (low + high) / 2;
       HFONT testFont = CreateFontW(
