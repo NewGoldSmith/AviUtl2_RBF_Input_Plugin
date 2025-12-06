@@ -1,6 +1,6 @@
 <!--# **AviUtl2** 入力プラグインのたたき台（フレームワークにちょっと肉付けしたもの）を作ってみた-->
-![構成図](https://github.com/NewGoldSmith/AviUtl2_Input_Plugin/blob/main/images/title.png?raw=true)  
-![構成図](https://github.com/NewGoldSmith/AviUtl2_Input_Plugin/blob/main/images/title2.png?raw=true)  
+![構成図](https://github.com/NewGoldSmith/AviUtl2_RBF_Input_Plugin/blob/main/images/title.png?raw=true)  
+![構成図](https://github.com/NewGoldSmith/AviUtl2_RBF_Input_Plugin/blob/main/images/title2.png?raw=true)  
 今は１０月末、７月中には出来るであろうと思っていた自由研究を提出します。  
 # この記事の対象読者
 - プラグインというものは知っているけど、なんか、難しそうで、今まで触ってこなかったけど、さわりの部分はどんなものか、興味がある方
@@ -89,7 +89,7 @@ MachinePolicy       Undefined
 次に、.ps1はダウンロードしたファイルなので、そのまま実行しようとすると、許可を求めるダイアログボックスが現れます。これが、ビルド時のエラーとなってしまいますので、あらかじめ許可をしておく設定をします。
 RBFReaderとTestDlgというサブディレクトリに**update_build.ps1**というファイルがあります。このファイルをエクスプローラーで選択して**右クリック＞プロパティ＞**で、ダイアログボックスに下図のような文言が現れます。
 
-![構成図](https://github.com/NewGoldSmith/AviUtl2_Input_Plugin/blob/main/images/accept.png?raw=true)
+![構成図](https://github.com/NewGoldSmith/AviUtl2_RBF_Input_Plugin/blob/main/images/accept.png?raw=true)
 
 初めての場合はこのような表示が出てきます。「セキュリティ：このファイルは・・・」の許可するのチェックボックスにチェックを入れ適用します。一度設定すればもうこの表示は出なくなります。
 
