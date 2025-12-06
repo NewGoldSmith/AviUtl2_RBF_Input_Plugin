@@ -25,13 +25,13 @@
 ソースをダウンロード後、**ビルドできるよう**に設定をします。このプログラム群はパワーシェルスクリプト（以下.ps1）も使っていることもあり、Windowsが.ps1の実行が許可されていないと、いきなりビルドしても途中でビルドエラーになってしまいます。まずはパワーシェル（以下PS）がビルド中に実行できるようにシステムを設定していきます。また、VisualStudio2022（以下VS）のプロジェクトファイルは、プロパティのデバッグ項目の設定がGitHubにアップロードされません。その為、手動での設定が必要になってきます。最終成果物はDLLであり、デバッグはAviUtl2がプラグインと認識されるディレクトリに配置し、実行はAviUtl2を起動しなくてはなりません。  
 ### ソースコードダウンロード  
 この記事で使うソースコードはGitHubから入手できます。  
-[https://github.com](https://github.com/NewGoldSmith/AviUtl2_Input_Plugin.git)  
+[https://github.com/NewGoldSmith/AviUtl2_RBF_Input_Plugin](https://github.com/NewGoldSmith/AviUtl2_RBF_Input_Plugin)  
 SDKを別途ダウンロードしたい場合は次のリンクからダウンロードできます。  
 [https://spring-fragrance.mints.ne.jp/aviutl](https://spring-fragrance.mints.ne.jp/aviutl)    
 
 この後の操作はZIPでダウンロードした場合を想定しています。各自、それぞれのやり方に合った方法で設定して下さればと思います。  
 ZIPを展開すると、いくつかのディレクトリとファイルが作成されます。aviutl2_test.slnxを開き、ソリューションエクスプローラーを開くと次のように表示されます。  
-![構成図](https://github.com/NewGoldSmith/AviUtl2_Input_Plugin/blob/main/images/SolutionEx1.png?raw=true)  
+![構成図](https://github.com/NewGoldSmith/AviUtl2_RBF_Input_Plugin/blob/main/images/SolutionEx1.png?raw=true)  
 プロジェクト数が結構ありますが、他で使っていたライブラリをこのソリューションでも使いまわししています。また個々のコンポーネントの単体テストをする為のテストダイアログ、ライブラリ化したコンポーネント、RBF（リバーシボードフォーマット）のファイルを作るCUIのプログラム等のプロジェクトも含んでいます。
 
 ### パワーシェルスクリプトの実行を有効にする
@@ -101,7 +101,7 @@ Visual Studio の各プロジェクトにおける 「構成プロパティ ＞ 
 このインプットプラグインを使用するには、**RBFReader**プロジェクトの「構成プロパティ＞デバッグ」の「コマンド」をAviUtl2の実行ファイルのパスに設定し、「作業ディレクトリ」はそのAviUtl2のディレクトリに設定します。
 ホストプログラムの指定が正しく行われていれば、プラグインは正常に動作するはずです。  
 
-![構成図](https://github.com/NewGoldSmith/AviUtl2_Input_Plugin/blob/main/images/07CfgDbg.png?raw=true)  
+![構成図]https://github.com/NewGoldSmith/AviUtl2_RBF_Input_Plugin/blob/main/images/07CfgDbg.png?raw=true)  
 
 ### インプットプラグインをビルドし実行する
 **RBFReader**プロジェクトをビルドし、実行してみてください。  
@@ -133,16 +133,16 @@ It was a success.
 ### AviUtl2をVSから起動する
 スタートアッププロジェクトを再び**RBFReader**に切り替え「ローカルWindowsデバッガー」で起動してみましょう。
 test.rbfファイルをタイムラインに張り付けると  
-![構成図](https://github.com/NewGoldSmith/AviUtl2_Input_Plugin/blob/main/images/09paste.png?raw=true)  
+![構成図](https://github.com/NewGoldSmith/AviUtl2_RBF_Input_Plugin/blob/main/images/09paste.png?raw=true)  
 の様に表示されます。  
 #### **注意**  
 ファイルビューの**test.rbf**をダブルクリックしても関連付けられてないので、何も起動しません。**必ず**ドラッグアンドドロップまたは、同等の操作をして下さい。  
 
 さて、タイムラインカーソル（赤の縦線を勝手に命名）を動かすと画像が変わっていきますでしょうか？  
-![構成図](https://github.com/NewGoldSmith/AviUtl2_Input_Plugin/blob/main/images/10TimeLineCursor.png?raw=true)  
+![構成図](https://github.com/NewGoldSmith/AviUtl2_RBF_Input_Plugin/blob/main/images/10TimeLineCursor.png?raw=true)  
 
 ここで更に、エクスプローラービューでtest.rbfをコピーして貼り付け、「**test - コピー.rbf**」ファイルを作って、これも張り付けてみましょう。  
-![構成図](https://github.com/NewGoldSmith/AviUtl2_Input_Plugin/blob/main/images/10-2.png?raw=true)  
+![構成図](https://github.com/NewGoldSmith/AviUtl2_RBF_Input_Plugin/blob/main/images/10-2.png?raw=true)  
 このような感じになりましたでしょうか。なれば**デモプログラムの構築と実行**は成功です。
 
 ## デモプログラムの挙動を観察する
@@ -150,15 +150,15 @@ test.rbfファイルをタイムラインに張り付けると
 動画を表示できるようにはなりましたが、「**FPSをもう少し下げたい**」とか「**画像サイズを大きめに**」とか設定したい場合があるかもしれません。もちろんAviUtl2でもある程度カバーはできます。しかしジャギーが出たり何かと不便が出る場合があります。その為に元動画の設定を変えれるようにしています。
 #### 入力プラグインの設定ダイアログを出す
 AviUtl2のメニュー＞設定＞入力プラグインの設定を選ぶ  
-![構成図](https://github.com/NewGoldSmith/AviUtl2_Input_Plugin/blob/main/images/11ChangeCfgPlgin.png?raw=true)  
+![構成図](https://github.com/NewGoldSmith/AviUtl2_RBF_Input_Plugin/blob/main/images/11ChangeCfgPlgin.png?raw=true)  
 
 すると入力プラグインの設定ダイアログが表示されます。
 この中に「Reversi Board Format Reader version 0.01」があります。  
 これを選択しながら右クリックすると、ポップアップメニュー出ますので「プラグインの設定」を選択すると  
-![構成図](https://github.com/NewGoldSmith/AviUtl2_Input_Plugin/blob/main/images/12InputPlginListDlg.png?raw=true)  
+![構成図](https://github.com/NewGoldSmith/AviUtl2_RBF_Input_Plugin/blob/main/images/12InputPlginListDlg.png?raw=true)  
 
 このように.rbfファイルの設定ダイアログが表示されます。  
-![構成図](https://github.com/NewGoldSmith/AviUtl2_Input_Plugin/blob/main/images/13-2PluginSettingDlg.png?raw=true)  
+![構成図](https://github.com/NewGoldSmith/AviUtl2_RBF_Input_Plugin/blob/main/images/13-2PluginSettingDlg.png?raw=true)  
 #### 設定項目の概要
 - **新規ファイルのデフォルト設定** 新しいファイルを読み込ませるときの、動画ファイルの設定を行います。
 - **個別のファイルの設定** 今まで読み込んだことのあるファイルで、現在もその存在が確認できたファイルの設定の変更をします。
@@ -169,17 +169,17 @@ AviUtl2のメニュー＞設定＞入力プラグインの設定を選ぶ
 - **リストの項目** 現在設定変更できるファイルを表示しています。ギアのアイコンをクリックするか、項目をダブルクリックすることにより、設定変更のダイアログが現れます。
 #### 個別のファイル設定をする
 リストの項目をダブルクリックするか、ギアのアイコンをクリックしてみてください。
-![構成図](https://github.com/NewGoldSmith/AviUtl2_Input_Plugin/blob/main/images/14IndividualSettings.png?raw=true)  
+![構成図](https://github.com/NewGoldSmith/AviUtl2_RBF_Input_Plugin/blob/main/images/14IndividualSettings.png?raw=true)  
 このようにプレビューウィンドウと個別に設定するダイアログが表示されます。  
 「▶」や「◀」をクリックすると、盤面が変わります。  
 また、一辺のドット数を変えるとプレビューウィンドウの大きさが変わります。  
 プレビューウィンドウを選択して、テンキーの「+」や「-」ボタンを押したり、Ctrlを押してマウスホイールを動かすと、表示倍率が変わります。  
 では、試しに「一辺のドット数」を「256」に変えて「OK」ボタンを押してダイアログを閉じてみましょう。  
-![構成図](https://github.com/NewGoldSmith/AviUtl2_Input_Plugin/blob/main/images/15AfterChange.png?raw=true)  
+![構成図](https://github.com/NewGoldSmith/AviUtl2_RBF_Input_Plugin/blob/main/images/15AfterChange.png?raw=true)  
 設定が反映されています。  
 
 このダイアログも「OK」を押して閉じて、入力プラグインの設定ダイアログも閉じてみてください。  
-![構成図](https://github.com/NewGoldSmith/AviUtl2_Input_Plugin/blob/main/images/16Reflected.png?raw=true)  
+![構成図](https://github.com/NewGoldSmith/AviUtl2_RBF_Input_Plugin/blob/main/images/16Reflected.png?raw=true)  
 設定変更が反映されています。  
 ### 入力プラグインの動作まとめ
 - ファイルごとの個別の設定も可能
@@ -187,7 +187,7 @@ AviUtl2のメニュー＞設定＞入力プラグインの設定を選ぶ
 
 ## ソリューションの各プロジェクトの概要  
 先にも載せていたソリューションの構成ですが、各プロジェクトの概要です。  
-![構成図](https://github.com/NewGoldSmith/AviUtl2_Input_Plugin/blob/main/images/SolutionEx1.png?raw=true)  
+![構成図](https://github.com/NewGoldSmith/AviUtl2_RBF_Input_Plugin/blob/main/images/SolutionEx1.png?raw=true)  
 - **BitManip** ビット操作のスタティックライブラリ。
 - **BitManip256** __m256iというAVXの型のビット操作をするスタティックライブラリ。
 - **CommonConfigDlg** 設定ダイアログを提供するDLLプロジェクト。本DLLはCOMインターフェースを介してアクセスされる。COMインターフェースを利用することにより、インクルードファイルの依存関係を最小化し、呼び出し元コードに対して実装の詳細を隠蔽する構成としている。
