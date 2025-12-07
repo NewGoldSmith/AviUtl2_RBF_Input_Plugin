@@ -101,7 +101,7 @@ Visual Studio の各プロジェクトにおける 「構成プロパティ ＞ 
 このインプットプラグインを使用するには、**RBFReader**プロジェクトの「構成プロパティ＞デバッグ」の「コマンド」をAviUtl2の実行ファイルのパスに設定し、「作業ディレクトリ」はそのAviUtl2のディレクトリに設定します。
 ホストプログラムの指定が正しく行われていれば、プラグインは正常に動作するはずです。  
 
-![構成図]https://github.com/NewGoldSmith/AviUtl2_RBF_Input_Plugin/blob/main/images/07CfgDbg.png?raw=true)  
+![構成図](https://github.com/NewGoldSmith/AviUtl2_RBF_Input_Plugin/blob/main/images/07CfgDbg.png?raw=true)  
 
 ### インプットプラグインをビルドし実行する
 **RBFReader**プロジェクトをビルドし、実行してみてください。  
