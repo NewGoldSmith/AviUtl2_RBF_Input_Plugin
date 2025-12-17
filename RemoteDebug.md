@@ -26,7 +26,10 @@
 ・pingを双方向から打ってみましょう。リモートへの反応がないなら、Windowsの次の設定を確認してみて下さい。  
 ![構成図](https://github.com/NewGoldSmith/AviUtl2_RBF_Input_Plugin/blob/main/Images_RemoteDebug/02rejection.png?raw=true)  
 リモートデスクトップの接続が出来ていても、これがONになっていたら接続できません。OFFにします。  
-
+- **リモートに配置自動で配置されてない**  
+・構成で配置が設定されていない可能性があります。以下を参考にして下さい。  
+![alt text](
+https://github.com/NewGoldSmith/AviUtl2_RBF_Input_Plugin/blob/main/Images_RemoteDebug/05Composition.png?raw=true)  
 # まとめ  
 たまにリモートデバッグの設定を行うと、なかなかうまくいかない事がある。  
 どこかに書き留めて置けば、次回はスムースに出来るであろうと思われる。
