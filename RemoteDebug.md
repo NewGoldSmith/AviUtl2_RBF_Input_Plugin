@@ -5,7 +5,7 @@
  その辺りひと手間かかっています。  
  リモートデスクトップでAviUtl2を操作しながらデバッグする事も出来ます。リモートデバッグのいい所は、ブレークポイントがヒットしてもフォーカスチェンジが起きない事です。  
  # 事前準備  
- 「Remote Tools for Visual Studio 2026」をMicrosoftのサイトから探して、リモートのPCにインストールしましょう。
+ 「Remote Tools for Visual Studio 2026」をMicrosoftのサイトから探して、リモートのPCにインストールしておく。
 # お勧め  
 リモートのPCには予めリモートデスクトップでアクセスできるようにしておくと、１つのキーボードと１つのマウスで、リモート、ローカル双方にアクセスでき便利です。
 
@@ -15,20 +15,21 @@
 
 これは、リモートでRBFReader.aui2をデバッグする設定です。
 追加の配置ファイルとして「CommonConfigDlg.dll」が設定されています。
-ソースコードは以下のリンクです。    
-[リンクテキスト](リンク先URL)  
+このソリューションは以下のリンクです。    
+[リンク](https://github.com/NewGoldSmith/AviUtl2_RBF_Input_Plugin)  
 
 設定例2  
-![構成図](.\Images_RemoteDebug\03Properties2.png?raw=true)  
+![構成図](https://github.com/NewGoldSmith/AviUtl2_RBF_Input_Plugin/blob/main/Images_RemoteDebug/03Properties2.png?raw=true)  
 これはEXEファイルの例です。配置するディレクトリがない場合、自動で作られます。事前に権限を与えておいてください。  
 ## トラブルシューティング
 - **接続出来ているような感触が無い**  
-・pingを双方向から打ってみましょう。リモートへの反応がないなら、次の設定を確認して見て下さい。  
-![構成図](.\Images_RemoteDebug\02rejection.png?raw=true)  
+・pingを双方向から打ってみましょう。リモートへの反応がないなら、Windowsの次の設定を確認してみて下さい。  
+![構成図](https://github.com/NewGoldSmith/AviUtl2_RBF_Input_Plugin/blob/main/Images_RemoteDebug/02rejection.png?raw=true)  
 リモートデスクトップの接続が出来ていても、これがONになっていたら接続できません。OFFにします。  
 
 # まとめ  
 たまにリモートデバッグの設定を行うと、なかなかうまくいかない事がある。  
-ここに、書き留めて置けば、次回はスムースに出来るであろう。
+どこかに書き留めて置けば、次回はスムースに出来るであろうと思われる。
 
 読者様に置かれましては、この記事が参考になりましたら幸いです。
+
