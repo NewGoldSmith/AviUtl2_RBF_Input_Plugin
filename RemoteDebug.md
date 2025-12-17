@@ -14,7 +14,10 @@
 ![構成図](https://github.com/NewGoldSmith/AviUtl2_RBF_Input_Plugin/blob/main/Images_RemoteDebug/01Properties.png?raw=true)  
 
 これは、リモートでRBFReader.aui2をデバッグする設定です。
-追加の配置ファイルとして「CommonConfigDlg.dll」が設定されています。
+追加の配置ファイルとして「CommonConfigDlg.dll」が設定されています。  
+
+※現在のソースでは実際は「CommonConfigDlg-Debug.dll」というファイルが生成されます。随時変更がなされる可能性がありますので、その辺りは各自対処をお願いします。  
+  
 このソリューションは以下のリンクです。    
 [リンク](https://github.com/NewGoldSmith/AviUtl2_RBF_Input_Plugin)  
 
