@@ -10,8 +10,8 @@
 リモートのPCには予めリモートデスクトップでアクセスできるようにしておくと、１つのキーボードと１つのマウスで、リモート、ローカル双方にアクセスでき便利です。
 
 # 設定例 
-  設定例1
-![構成図](.\Images_RemoteDebug\01Properties.png?raw=true)  
+  設定例1  
+![構成図](https://github.com/NewGoldSmith/AviUtl2_RBF_Input_Plugin/blob/main/Images_RemoteDebug/01Properties.png?raw=true)  
 
 これは、リモートでRBFReader.aui2をデバッグする設定です。
 追加の配置ファイルとして「CommonConfigDlg.dll」が設定されています。
@@ -30,4 +30,5 @@
 # まとめ  
 たまにリモートデバッグの設定を行うと、なかなかうまくいかない事がある。  
 ここに、書き留めて置けば、次回はスムースに出来るであろう。
+
 読者様に置かれましては、この記事が参考になりましたら幸いです。
